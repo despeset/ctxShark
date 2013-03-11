@@ -9,6 +9,7 @@
 *****************************************************************************************/
 !!!function(scope){
     'use strict';
+
     /**
      *  All 2D context properties
      */
@@ -127,7 +128,7 @@
      */
     
     scope.ctxShark = function( ctx ){
-        console && console.log && console.log('~~~∆~~~ <( shark!!! ) ~~~~');
+        window.console && console.log && console.log('~~~∆~~~ <( shark!!! ) ~~~~');
 
         var buffer = []         // stores the recording
           , frame  = []         // tracks the state so state changes can be pushed into buffer
@@ -191,7 +192,7 @@
             for( var k in ctx ){
                 if( typeof ctx[k] === 'function' && outputMethodsIndex.hasOwnProperty(k) ){
                     (function(k){
-                        console && console.log && console.log( 'patching ' + k );
+                        window.console && console.log && console.log( 'patching ' + k );
                         var _super = ctx[k];
                         ctx[k] = function(){
                             if( recording ){
