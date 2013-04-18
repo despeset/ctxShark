@@ -1,6 +1,6 @@
 /*****************************************************************************************
 
-     ctxShark 0.1 - Javascript canvas 2d context tapping, recording & playback
+     ctxShark 0.2 - Javascript canvas 2d context tapping, recording & playback
      http://github.com/danielmendel/ctxShark
 
      Copyright (c) 2012 Daniel Mendel Espeset (http://danielmendel.com)         
@@ -114,7 +114,8 @@
     /**
      *  clone
      *
-     *  Cheap way to clone an object, must be possible to serialize ( no cyclic references )
+     *  Easy way to clone an object, must be possible to serialize ( no cyclic references )
+     *  About 20% slower than recursive copying: http://jsperf.com/deep-copy-arbitrary-noncyclic-objects
      *
      *  @param  nonCyclicObject  non-cyclic object to clone
      */
@@ -211,8 +212,9 @@
              *  Add some methods for starting, stopping and retrieving the recording.
              */
 
-            ctx.startBuffer = function(){
+            ctx.startBuffer = function( duration ){
                 requestAnimationFrame( markFrame );
+                typeof duration !== undefined && setTimeout(ctx.stopBuffer, duration);
                 return recording = true;
             }
 
