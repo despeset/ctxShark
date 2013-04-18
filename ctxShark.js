@@ -200,7 +200,7 @@
                                 updateState();
                                 frame.push([ outputMethodsIndex[k], arguments ]);
                             }
-                            _super.apply( this, arguments );
+                            return _super.apply( this, arguments );
                         }
                     })(k);  
                 }
